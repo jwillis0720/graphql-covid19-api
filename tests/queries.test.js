@@ -1,10 +1,10 @@
-import 'cross-fetch/polyfill';
-import { gql } from 'apollo-boost';
-import client from './utils/getClient';
-import 'regenerator-runtime/runtime.js';
+import "cross-fetch/polyfill";
+import { gql } from "apollo-boost";
+import client from "./utils/getClient";
+import "regenerator-runtime/runtime.js";
 // const client = getClient();
-describe('The all countries query', () => {
-  it('should return a dataray of all countries', async () => {
+describe("The all countries query", () => {
+  it("should return a dataray of all countries", async () => {
     const userQuery = gql`
       query {
         AllCountries {
