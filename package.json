@@ -4,9 +4,12 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
-    "start": "nodemon --exec babel-node index.js",
-    "dev": "babel-watch index.js",
-    "checkClient": "babel-watch tests/queries.test.js"
+    "start-dev": "nodemon --exec babel-node src/index.js",
+    "start": "npm run clean && npm run build && node ./build/index.js",
+    "dev": "babel-watch src/index.js",
+    "checkClient": "babel-watch tests/queries.test.js",
+    "build": "babel -d ./build ./src -s",
+    "clean": "rm -rf build && mkdir build"
   },
   "keywords": [],
   "author": "",
@@ -25,11 +28,13 @@
     "jest": "^25.4.0"
   },
   "dependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/plugin-transform-spread": "^7.8.3",
     "D": "^1.0.0",
     "apollo-datasource-rest": "^0.8.1",
     "apollo-server": "^2.12.0",
     "graphql-directive-resolve-as": "^1.0.2",
+    "nodemon": "^2.0.3",
     "regenerator-runtime": "^0.13.5"
   },
   "description": "",
