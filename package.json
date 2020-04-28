@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "babel-watch index.js"
+    "test": "jest --runInBand",
+    "dev": "babel-watch index.js",
+    "checkClient": "babel-watch tests/queries.test.js"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +13,14 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "@babel/register": "^7.9.0",
+    "apollo-boost": "^0.4.7",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "babel-watch": "^7.0.0"
+    "babel-watch": "^7.0.0",
+    "cross-fetch": "^3.0.4",
+    "graphql": "^15.0.0",
+    "jest": "^25.4.0"
   },
   "dependencies": {
     "@babel/plugin-transform-spread": "^7.8.3",
@@ -24,5 +30,9 @@
     "graphql-directive-resolve-as": "^1.0.2",
     "regenerator-runtime": "^0.13.5"
   },
-  "description": ""
+  "description": "",
+  "jest": {
+    "globalSetup": "./tests/config/globalSetup.js",
+    "globalTeardown": "./tests/config/globalTeardown.js"
+  }
 }

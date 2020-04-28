@@ -17,4 +17,4 @@ const countyObject = {
     });
   },
 };
-module.exports = countyObject;
+export default countyObject;

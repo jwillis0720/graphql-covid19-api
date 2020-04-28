@@ -8,4 +8,4 @@ const countryInfoObject = {
   //Have lots of other stuff to choose from in this dataobject
 };
 
-module.exports = countryInfoObject;
+export default countryInfoObject;

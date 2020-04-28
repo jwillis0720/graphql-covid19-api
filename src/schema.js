@@ -1,4 +1,4 @@
-import { gql } from "apollo-server";
+import { gql } from 'apollo-server';
 const typeDefs = gql`
   scalar Date
   directive @resolveAs(name: String) on FIELD_DEFINITION

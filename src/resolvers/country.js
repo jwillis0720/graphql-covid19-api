@@ -21,4 +21,4 @@ const countryObject = {
     });
   },
 };
-module.exports = countryObject;
+export default countryObject;
