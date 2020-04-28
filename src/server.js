@@ -17,6 +17,7 @@ const server = new ApolloServer({
     resolveAs: resolveAs,
   },
   tracing: false,
+  graphiql: true
 });
 
 export default server;
