@@ -1,5 +1,5 @@
 {
-  "name": "covidwbabel",
+  "name": "novel-covid-graphql-api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
