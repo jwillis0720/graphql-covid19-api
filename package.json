@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest --runInBand",
     "start-dev": "nodemon --exec babel-node src/index.js",
-    "start": "npm run clean && npm run build && node ./build/index.js",
+    "start": "node ./build/index.js",
     "dev": "babel-watch src/index.js",
     "checkClient": "babel-watch tests/queries.test.js",
     "build": "babel -d ./build ./src -s",
