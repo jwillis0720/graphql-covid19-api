@@ -28,7 +28,8 @@ var server = new _apolloServer.ApolloServer({
     resolveAs: _graphqlDirectiveResolveAs.resolveAs
   },
   tracing: false,
-  graphiql: true
+  playground: true,
+  introspection: true
 });
 var _default = server;
 exports["default"] = _default;
