@@ -7,7 +7,7 @@ class CSVAPI extends RESTDataSource {
     super();
     // need to put this on a CDN
     this.baseURL =
-      "https://raw.githubusercontent.com/jwillis0720/covid19api/graphql/graphql-server/locationInfo/";
+      "https://raw.githubusercontent.com/jwillis0720/covid19api/master/graphql-server/locationInfo/";
   }
 
   async getCountryInfo(countryInfo) {
