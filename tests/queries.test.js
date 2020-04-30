@@ -12,7 +12,7 @@ const client = new ApolloClient({
 });
 
 // const client = new ApolloClient({
-//   uri: 'https://novel-covid-graphql-api.herokuapp.com/',
+//   uri: "https://novel-covid-graphql-api.herokuapp.com/",
 //   onError: (e) => {
 //     console.log(e);
 //   },
@@ -93,14 +93,18 @@ describe("The all countries query", () => {
 });
 
 const OkayIfNull = ["yesterdayDeaths", "yesterdayCases"];
+const OkayIfNullCountry = ["Diamond Princess", "MS Zaandam"];
 
 describe("The all countries query", () => {
   it("should not return null values", async () => {
+    const emptyCountries = [];
+    const emptyCountryInfo = [];
     const data = await getAsyncQueryData();
     data.AllCountries.map((obj) => {
       Object.keys(obj).forEach(function (item) {
         if (obj[item] == null && !OkayIfNull.includes(item)) {
           console.log(item, "is null for ", obj["name"]);
+          emptyCountries.push({ Name: obj["name"], nullValue: item });
         }
       });
     });
@@ -109,16 +113,22 @@ describe("The all countries query", () => {
       let countryInfo = obj.info;
       Object.keys(countryInfo).forEach(function (item) {
         // console.log(item);
-        if (countryInfo[item] == null) {
+        if (
+          countryInfo[item] == null &&
+          !OkayIfNullCountry.includes(obj["name"])
+        ) {
           console.log(
             item,
             "country info is null for ",
             obj["name"],
             countryInfo
           );
+          emptyCountryInfo.push({ Name: obj["name"], nullValue: item });
         }
       });
     });
+    expect(await emptyCountries).toEqual([]);
+    expect(await emptyCountryInfo).toEqual([]);
     //can have multiple expect statements
   });
 });

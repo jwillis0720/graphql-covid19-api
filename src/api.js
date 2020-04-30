@@ -10,11 +10,11 @@ class CSVAPI extends RESTDataSource {
       "https://raw.githubusercontent.com/jwillis0720/covid19api/master/graphql-server/locationInfo/";
   }
 
-  async getCountryInfo(countryInfo) {
+  async getCountryInfo(iso3) {
     const response = await this.get("CountryInfo.json");
     const JSONResponse = JSON.parse(response);
-    const iso3 = countryInfo.iso3;
-    const iso2 = countryInfo.iso2;
+    // const iso3 = countryInfo.iso3;
+    // const iso2 = countryInfo.iso2;
     const filteredResponse = JSONResponse.filter((key) => {
       // console.log(key.iso_a3);
       return key["iso_a3"] === iso3;
@@ -55,7 +55,27 @@ class NovelCovidAPI extends RESTDataSource {
 
   async getCountries() {
     const response = await this.get("countries");
-    return response.map((obj) => {
+    return response.map(async (obj) => {
+      if (obj.countryInfo._id == null) {
+        if (obj.country === "Diamond Princess") {
+          let countryInfo = obj.country.countryInfo;
+          console.log(countryInfo);
+          return {
+            ...obj,
+            datereadable: new Date(obj.updated).toDateString(),
+            countryInfo: { iso3: "DMP", ...countryInfo },
+          };
+        }
+        if (obj.country === "MS Zaandam") {
+          let countryInfo = obj.country.countryInfo;
+          console.log(countryInfo);
+          return {
+            ...obj,
+            datereadable: new Date(obj.updated).toDateString(),
+            countryInfo: { iso3: "MSZ", ...countryInfo },
+          };
+        }
+      }
       return { ...obj, datereadable: new Date(obj.updated).toDateString() };
     });
   }
